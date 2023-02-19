@@ -1,13 +1,14 @@
 version: '3'
-
 services:
-  api:
+  web:
     build: .
     ports:
       - '3000:3000'
-    environment:
-      - REDIS_HOST=redis
     depends_on:
       - redis
+    environment:
+      REDIS_HOST: redis
   redis:
-    image: 'redis:alpine'
+    image: redis
+    ports:
+      - '6379:6379'
